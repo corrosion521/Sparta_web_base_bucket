@@ -103,7 +103,7 @@
 
 
                         let temp_html = ``
-                           //완료 여부에 따라
+                        //완료 여부에 따라
                         if (done == 0) {
                             temp_html = `<li>
                                         <h2>✅ ${bucket}</h2>
@@ -118,39 +118,39 @@
                         $('#bucket-list').append(temp_html)
 
 
-                        console.log(response['buckets'])
+                        //console.log(response['buckets'])
                     }
-                    }
+                }
 
 
-                });
+            });
         }
 
-            function save_bucket() {
+        function save_bucket() {
 
-                let bucket = $('#bucket').val()
+            let bucket = $('#bucket').val()
 
-                $.ajax({
-                    type: "POST",
-                    url: "/bucket",
-                    data: {bucket_give: bucket},
-                    success: function (response) {
-                        alert(response["msg"])
-                        window.location.reload()
-                    }
-                });
-            }
+            $.ajax({
+                type: "POST",
+                url: "/bucket",
+                data: {bucket_give: bucket},
+                success: function (response) {
+                    alert(response["msg"])
+                    window.location.reload()
+                }
+            });
+        }
 
-            function done_bucket(num) {
-                $.ajax({
-                    type: "POST",
-                    url: "/bucket/done",
-                    data: {sameple_give: '데이터전송'},
-                    success: function (response) {
-                        alert(response["msg"])
-                    }
-                });
-            }
+        function done_bucket(num) {
+            $.ajax({
+                type: "POST",
+                url: "/bucket/done",
+                data: {sameple_give: '데이터전송'},
+                success: function (response) {
+                    alert(response["msg"])
+                }
+            });
+        }
     </script>
 </head>
 <body>
