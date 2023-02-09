@@ -31,11 +31,19 @@ def bucket_post():
 
     return jsonify({'msg': '등록 완료!'})
 
+# api 3 : 버킷 상태 업데이트(완료)
 @app.route("/bucket/done", methods=["POST"])
 def bucket_done():
-    sample_receive = request.form['sample_give']
-    print(sample_receive)
-    return jsonify({'msg': 'POST(완료) 연결 완료!'})
+    num_receive = request.form['num_give']
+
+    # 바꾸기 - 예시
+    # 숫자로 바꿔주기 유의 (int). 클라이언트로 부터 받는 것은 문자로 받기에..(숫자를 문자로 받기에..)
+    # [컬렉션 객체].update_one( { [조건값] }, {"$set":{수정값}} )
+    # https://velog.io/@jewon119/01.MongoDB-%EA%B8%B0%EC%B4%88-pymongo-%EB%8B%A4%EB%A3%A8%EA%B8%B02
+    # 즉, 버킷 생성 때부터 num을 같이 생성했던 이유는 이와 같이 업데이트(완료) 할 때, 조건값으로 num을 넣어주기 위해서다.
+    db.bucket.update_one({'num': int(num_receive)}, {'$set': {'done': 1}})
+
+    return jsonify({'msg': '버킷 완료!'})
 
 
 # api 2 : 버킷 리스트 보여주기
